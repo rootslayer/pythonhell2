@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#You need the tool uncompyle2 to use this
+#this will uncompile python packages recursively through the directories
+
+#Red='\033[38;0;31m'
+Red='\033[1;31m'
+
+White='\033[38;1;37m'
+
+find . -name "*.pyc" -exec uncompyle2 -o '{}_done' '{}' \;
+echo -e $Red "\n\n\n\n\nUncomplying Done....Press Enter"
+echo -e $White
+read Ucase
+find . -name "*.pyc_done" -exec rename -v 's/\.pyc_done$/\.py/i' {} \;
+echo -e $Red "\n\n\n\n\nRenaming Done....Press Enter"
+echo -e $White
+read Ucase2
+find . -name "*.pyc" -exec rm '{}' \;
+echo -e $Red "\n\n\n\n\nCleanup Done....Press Enter"
+echo -e $White
+read Ucase3
